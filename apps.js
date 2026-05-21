@@ -38,7 +38,7 @@ const projectData = [
         beds: 3,
         baths: 3,
         sqft: 2400,
-        image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=600&q=80"
+        image: "https://images.unsplash.com/photo-160096542815-ffad4c1539a9?auto=format&fit=crop&w=600&q=80"
     },
     {
         id: 5,
@@ -93,7 +93,6 @@ const priceFilter = document.getElementById('priceFilter');
 
 // 3. Function to render project elements to the screen
 function displayProjects(projects) {
-    // If no projects match filters, show a clean message
     if (projects.length === 0) {
         projectsGrid.innerHTML = `
             <div class="col-span-full text-center py-12 text-gray-400 bg-white rounded-xl border border-dashed border-gray-200">
@@ -103,10 +102,8 @@ function displayProjects(projects) {
         return;
     }
 
-    // Build standard card layouts for each house structure dynamically
     projectsGrid.innerHTML = projects.map(project => `
         <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md border border-gray-100 transition duration-300 flex flex-col group">
-            <!-- Project Image Container -->
             <div class="relative overflow-hidden bg-gray-200 h-56">
                 <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                 <span class="absolute top-4 left-4 bg-slate-900/80 backdrop-blur-md text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
@@ -114,11 +111,9 @@ function displayProjects(projects) {
                 </span>
             </div>
             
-            <!-- Details Container -->
             <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
                 <div>
                     <h3 class="text-lg font-bold text-gray-800 tracking-tight group-hover:text-amber-600 transition">${project.title}</h3>
-                    <!-- Architectural specs framework -->
                     <div class="flex items-center gap-4 text-xs font-medium text-gray-500 mt-2">
                         <span><strong>${project.beds}</strong> Beds</span>
                         <span>•</span>
@@ -128,7 +123,6 @@ function displayProjects(projects) {
                     </div>
                 </div>
 
-                <!-- Pricing footprint wrapper -->
                 <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
                     <div>
                         <span class="text-xs text-gray-400 block uppercase font-bold tracking-wider">Est. Build Price</span>
@@ -149,11 +143,9 @@ function filterProjects() {
     const selectedPriceBracket = priceFilter.value;
 
     const filtered = projectData.filter(project => {
-        // Evaluate keyword filter rule across project attributes
         const matchesSearch = project.title.toLowerCase().includes(searchString) || 
                               project.style.toLowerCase().includes(searchString);
 
-        // Evaluate categorical price boundary conditions
         let matchesPrice = true;
         if (selectedPriceBracket === "under-400") {
             matchesPrice = project.price < 400000;
@@ -166,7 +158,6 @@ function filterProjects() {
         return matchesSearch && matchesPrice;
     });
 
-    // Push execution update downstream to view module
     displayProjects(filtered);
 }
 
@@ -174,7 +165,6 @@ function filterProjects() {
 searchBar.addEventListener('input', filterProjects);
 priceFilter.addEventListener('change', filterProjects);
 
-// Run initial layout setup on browser frame paint cycle
 displayProjects(projectData);
 
 // ==================== SLIDESHOW FUNCTIONALITY ====================
@@ -186,7 +176,10 @@ const prevButton = document.getElementById('prevSlide');
 const nextButton = document.getElementById('nextSlide');
 
 function initSlideshow() {
-    // Create slide indicators (dots)
+    // FIX: Automatically sort building items alphabetically by their title layout
+    materialsSlides.sort((a, b) => a.title.localeCompare(b.title));
+
+    // Create slide indicators (dots) based on sorted array
     materialsSlides.forEach((_, index) => {
         const dot = document.createElement('button');
         dot.className = `w-3 h-3 rounded-full transition ${index === 0 ? 'bg-amber-500' : 'bg-white/50'}`;
@@ -194,7 +187,7 @@ function initSlideshow() {
         slideIndicators.appendChild(dot);
     });
 
-    // Create slides
+    // Create slides based on sorted array
     materialsSlides.forEach((slide, index) => {
         const slideDiv = document.createElement('div');
         slideDiv.className = `absolute w-full h-full transition-opacity duration-1000 ${index === 0 ? 'opacity-100' : 'opacity-0'}`;
@@ -207,7 +200,6 @@ function initSlideshow() {
         slideshowContainer.appendChild(slideDiv);
     });
 
-    // Start auto-rotation
     startAutoSlideshow();
 }
 
@@ -255,9 +247,7 @@ function resetAutoSlideshow() {
     startAutoSlideshow();
 }
 
-// Event listeners for slideshow controls
 prevButton.addEventListener('click', prevSlide);
 nextButton.addEventListener('click', nextSlide);
 
-// Initialize slideshow when DOM is ready
 initSlideshow();

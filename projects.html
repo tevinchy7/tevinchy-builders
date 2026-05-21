@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Portfolio | Apex Builds</title>
+    <title>Our Portfolio | TEVBUILD</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 text-gray-900 font-sans min-h-screen flex flex-col justify-between">
@@ -11,7 +11,7 @@
     <header class="bg-white shadow-sm sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
             <h1 class="text-2xl font-bold tracking-tight text-slate-800">
-                <a href="index.html">APEX<span class="text-amber-500">BUILDS</span></a>
+                <a href="index.html">TEV<span class="text-amber-500">BUILD</span></a>
             </h1>
             <nav class="space-x-6 text-sm font-medium text-gray-600">
                 <a href="index.html" class="hover:text-amber-500 transition">Home</a>
@@ -28,37 +28,26 @@
         </div>
 
         <div class="flex justify-center items-center gap-4 mb-12">
-            <button id="btnAll" class="px-5 py-2 rounded-xl text-sm font-bold shadow-sm transition bg-amber-500 text-white">
-                All Works
-            </button>
-            <button id="btnCompleted" class="px-5 py-2 rounded-xl text-sm font-bold shadow-sm transition bg-white text-gray-600 border border-gray-200 hover:bg-gray-100">
-                Completed
-            </button>
-            <button id="btnOngoing" class="px-5 py-2 rounded-xl text-sm font-bold shadow-sm transition bg-white text-gray-600 border border-gray-200 hover:bg-gray-100">
-                On-Going
-            </button>
+            <button id="btnAll" class="px-5 py-2 rounded-xl text-sm font-bold shadow-sm transition bg-amber-500 text-white">All Works</button>
+            <button id="btnCompleted" class="px-5 py-2 rounded-xl text-sm font-bold shadow-sm transition bg-white text-gray-600 border border-gray-200 hover:bg-gray-100">Completed</button>
+            <button id="btnOngoing" class="px-5 py-2 rounded-xl text-sm font-bold shadow-sm transition bg-white text-gray-600 border border-gray-200 hover:bg-gray-100">On-Going</button>
         </div>
 
-        <div id="portfolioGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            </div>
+        <div id="portfolioGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
     </main>
 
     <footer class="bg-slate-900 text-slate-400 py-8 text-center text-sm w-full">
-        <p>&copy; 2026 Apex Builds. Live tracking enabled.</p>
+        <p>&copy; 2026 TEV BUILD. Live tracking enabled.</p>
     </footer>
 
     <div id="imageModal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md hidden items-center justify-center z-[100] p-4 transition-all duration-300 opacity-0">
-        <button id="closeModalBtn" class="absolute top-6 right-6 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 p-3 rounded-full transition text-xl font-bold leading-none select-none">
-            ✕
-        </button>
-        
+        <button id="closeModalBtn" class="absolute top-6 right-6 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 p-3 rounded-full transition text-xl font-bold leading-none select-none">✕</button>
         <div class="max-w-5xl max-h-[85vh] overflow-hidden rounded-2xl shadow-2xl relative bg-slate-900 flex flex-col items-center">
             <img id="modalTargetImg" src="" alt="Expanded Architectural View" class="w-full h-full object-contain max-h-[80vh]">
-            <div id="modalTargetCaption" class="w-full bg-slate-900/80 p-4 text-center text-sm font-semibold text-slate-200 tracking-wide">
-                </div>
+            <div id="modalTargetCaption" class="w-full bg-slate-900/80 p-4 text-center text-sm font-semibold text-slate-200 tracking-wide"></div>
         </div>
     </div>
 
-    <script src="projects.js"></script>
+    <script src="project.js"></script>
 </body>
 </html>
