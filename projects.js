@@ -64,7 +64,7 @@ const buttons = {
     ongoing: document.getElementById('btnOngoing')
 };
 
-// New: Lightbox Modal DOM Selectors
+// Lightbox Modal DOM Selectors
 const imageModal = document.getElementById('imageModal');
 const modalTargetImg = document.getElementById('modalTargetImg');
 const modalTargetCaption = document.getElementById('modalTargetCaption');
@@ -80,9 +80,8 @@ function renderPortfolio(filterType) {
         
         return `
             <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 flex flex-col justify-between group hover:shadow-md transition duration-300">
-                <!-- Added cursor-zoom-in utility and an 'open-modal' identification hook marker class -->
                 <div class="relative overflow-hidden h-52 bg-gray-100 cursor-zoom-in">
-                    <img src="${item.image}" alt="${item.title}" class="open-modal w-full h-full object-cover group-hover:scale-103 transition duration-500">
+                    <img src="${item.image}" alt="${item.title}" class="open-modal w-full h-full object-cover group-hover:scale-105 transition duration-500">
                     <span class="absolute top-4 left-4 text-[11px] font-extrabold uppercase px-3 py-1 rounded-full tracking-wider ${badgeClass}">
                         ${item.status}
                     </span>
@@ -119,28 +118,24 @@ function renderPortfolio(filterType) {
     }).join('');
 }
 
-// 4. New: Image Modal Toggle Engine Logic
+// 4. Image Modal Toggle Engine Logic
 function openImageModal(imgSrc, imgAlt) {
     modalTargetImg.src = imgSrc;
     modalTargetCaption.textContent = imgAlt;
     
-    // Unhide from DOM layout view engine
     imageModal.classList.remove('hidden');
     imageModal.classList.add('flex');
     
-    // Execute a small micro-timeout trigger loop to make fade transitions animate smoothly
     setTimeout(() => {
         imageModal.classList.remove('opacity-0');
         imageModal.classList.add('opacity-100');
     }, 10);
 }
 
-// Event Delegation Closer Routine
 function closeImageModal() {
     imageModal.classList.remove('opacity-100');
     imageModal.classList.add('opacity-0');
     
-    // Re-hide container frame after opacity completes fading sequence cycle
     setTimeout(() => {
         imageModal.classList.remove('flex');
         imageModal.classList.add('hidden');
@@ -152,7 +147,7 @@ buttons.all.addEventListener('click', () => { renderPortfolio('all'); updateActi
 buttons.completed.addEventListener('click', () => { renderPortfolio('completed'); updateActiveButton('completed'); });
 buttons.ongoing.addEventListener('click', () => { renderPortfolio('ongoing'); updateActiveButton('ongoing'); });
 
-// Event Delegation Listener: Captures click signatures anywhere inside the grid layout container
+// Event Delegation Listener
 portfolioGrid.addEventListener('click', (e) => {
     if (e.target.classList.contains('open-modal')) {
         const imageSource = e.target.getAttribute('src');
@@ -164,7 +159,6 @@ portfolioGrid.addEventListener('click', (e) => {
 // Close UI Trigger hooks
 closeModalBtn.addEventListener('click', closeImageModal);
 imageModal.addEventListener('click', (e) => {
-    // If the user clicks outside the image on the dark blur blanket panel backdrop frame, close it
     if (e.target === imageModal) {
         closeImageModal();
     }
