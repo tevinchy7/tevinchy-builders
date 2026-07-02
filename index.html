@@ -5,15 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TEVBUILD | Premier Residential Projects</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes pulse-subtle {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+        .animate-brand {
+            display: inline-block;
+            animation: pulse-subtle 3s ease-in-out infinite;
+        }
+    </style>
 </head>
-<body class="bg-gray-50 text-gray-900 font-sans">
+<body class="bg-gray-50 text-slate-800 font-sans">
 
     <header class="bg-white shadow-sm sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
             <h1 class="text-2xl font-bold tracking-tight text-slate-800">
-                <a href="index.html">TEV<span class="text-amber-500">BUILD</span></a>
+                <a href="index.html" class="animate-brand">TEV<span class="text-amber-500">BUILD</span></a>
             </h1>
-            <nav class="space-x-6 text-sm font-medium text-gray-600">
+            <nav class="space-x-6 text-sm font-medium text-slate-700">
                <a href="index.html" class="text-amber-500 font-semibold">Home</a>
                <a href="projects.html" class="hover:text-amber-500 transition">Our Projects</a>
                <a href="contact.html" class="hover:text-amber-500 transition">Contact</a>
@@ -25,7 +35,7 @@
         <div class="max-w-7xl mx-auto text-center md:text-left md:flex md:items-center md:justify-between gap-12">
             <div class="max-w-xl space-y-6">
                 <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">Architectural Excellence, Built to Last.</h2>
-                <p class="text-slate-300 text-lg">Browse our completed residential architectural masterpieces. Filter by budget and find the inspiration for your next dream build.</p>
+                <p class="text-slate-200 text-lg">Browse our completed residential architectural masterpieces. Filter by budget and find the inspiration for your next dream build.</p>
             </div>
         </div>
     </section>
@@ -56,9 +66,9 @@
                 <input type="text" id="searchBar" placeholder="Search by design style..." class="px-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 w-64">
                 <select id="priceFilter" class="px-4 py-2 border border-gray-300 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-amber-500">
                     <option value="all">All Budgets</option>
-                    <option value="under-400">Under $400,000</option>
-                    <option value="400-600">$400,000 - $600,000</option>
-                    <option value="above-600">Premium ($600,000+)</option>
+                    <option value="under-50m">Under KSh 50,000,000</option>
+                    <option value="50m-80m">KSh 50,000,000 - KSh 80,000,000</option>
+                    <option value="above-80m">Premium (KSh 80,000,000+)</option>
                 </select>
             </div>
         </div>

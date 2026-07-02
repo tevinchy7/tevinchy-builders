@@ -5,13 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Portfolio | TEVBUILD</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes pulse-subtle {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+        .animate-brand {
+            display: inline-block;
+            animation: pulse-subtle 3s ease-in-out infinite;
+        }
+    </style>
 </head>
 <body class="bg-gray-50 text-gray-900 font-sans min-h-screen flex flex-col justify-between">
 
     <header class="bg-white shadow-sm sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <h1 class="text-2xl font-bold tracking-tight text-slate-800">
-                <a href="index.html">TEV<span class="text-amber-500">BUILD</span></a>
+            <h1 class="text-2xl font-bold tracking-tight text-slate-800 context-logo">
+                <a href="index.html" class="animate-brand">TEV<span class="text-amber-500">BUILD</span></a>
             </h1>
             <nav class="space-x-6 text-sm font-medium text-gray-600">
                 <a href="index.html" class="hover:text-amber-500 transition">Home</a>
@@ -27,10 +37,11 @@
             <p class="text-gray-500 text-sm">Track our real-time construction progress from open framing stages to completed premium architectural handovers.</p>
         </div>
 
-        <div class="flex justify-center items-center gap-4 mb-12">
-            <button id="btnAll" class="px-5 py-2 rounded-xl text-sm font-bold shadow-sm transition bg-amber-500 text-white">All Works</button>
-            <button id="btnCompleted" class="px-5 py-2 rounded-xl text-sm font-bold shadow-sm transition bg-white text-gray-600 border border-gray-200 hover:bg-gray-100">Completed</button>
-            <button id="btnOngoing" class="px-5 py-2 rounded-xl text-sm font-bold shadow-sm transition bg-white text-gray-600 border border-gray-200 hover:bg-gray-100">On-Going</button>
+        <!-- Fully Responsive Button Container Group -->
+        <div class="flex flex-row w-full sm:w-auto justify-center items-center gap-2 sm:gap-4 mb-12 max-w-md mx-auto sm:max-w-none px-2">
+            <button id="btnAll" class="flex-1 sm:flex-initial text-center px-5 py-2.5 rounded-xl text-sm font-bold shadow-sm transition bg-amber-500 text-white transform active:scale-95">All Works</button>
+            <button id="btnCompleted" class="flex-1 sm:flex-initial text-center px-5 py-2.5 rounded-xl text-sm font-bold shadow-sm transition bg-white text-gray-600 border border-gray-200 hover:bg-gray-100 active:bg-gray-50">Completed</button>
+            <button id="btnOngoing" class="flex-1 sm:flex-initial text-center px-5 py-2.5 rounded-xl text-sm font-bold shadow-sm transition bg-white text-gray-600 border border-gray-200 hover:bg-gray-100 active:bg-gray-50">On-Going</button>
         </div>
 
         <div id="portfolioGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>

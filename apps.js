@@ -1,10 +1,10 @@
-// 1. Project Catalog Data (Your completed house projects)
+// 1. Project Catalog Data (Your completed house projects converted to Kenyan Shillings)
 const projectData = [
     {
         id: 1,
         title: "The Scandinavian Minimalist",
         style: "Modern Nordic",
-        price: 385000,
+        price: 50050000, // Converted to KSh
         beds: 3,
         baths: 2.5,
         sqft: 2100,
@@ -14,7 +14,7 @@ const projectData = [
         id: 2,
         title: "Modern Industrial Loft-House",
         style: "Industrial",
-        price: 520000,
+        price: 67600000,
         beds: 4,
         baths: 3,
         sqft: 2850,
@@ -24,7 +24,7 @@ const projectData = [
         id: 3,
         title: "Pacific Northwest Eco-Villa",
         style: "Contemporary Coastal",
-        price: 745000,
+        price: 96850000,
         beds: 5,
         baths: 4.5,
         sqft: 4200,
@@ -34,7 +34,7 @@ const projectData = [
         id: 4,
         title: "Desert Modernist Pavillion",
         style: "Mid-Century Modern",
-        price: 495000,
+        price: 64350000,
         beds: 3,
         baths: 3,
         sqft: 2400,
@@ -44,7 +44,7 @@ const projectData = [
         id: 5,
         title: "The Urban Compact",
         style: "Modern Minimalist",
-        price: 320000,
+        price: 41600000,
         beds: 2,
         baths: 2,
         sqft: 1450,
@@ -54,7 +54,7 @@ const projectData = [
         id: 6,
         title: "The Glass Heights Estate",
         style: "Luxury Contemporary",
-        price: 890000,
+        price: 115700000,
         beds: 5,
         baths: 6,
         sqft: 5100,
@@ -86,12 +86,10 @@ const materialsSlides = [
     }
 ];
 
-// 2. Select DOM elements from index.html
 const projectsGrid = document.getElementById('projectsGrid');
 const searchBar = document.getElementById('searchBar');
 const priceFilter = document.getElementById('priceFilter');
 
-// 3. Function to render project elements to the screen
 function displayProjects(projects) {
     if (projects.length === 0) {
         projectsGrid.innerHTML = `
@@ -126,7 +124,7 @@ function displayProjects(projects) {
                 <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
                     <div>
                         <span class="text-xs text-gray-400 block uppercase font-bold tracking-wider">Est. Build Price</span>
-                        <span class="text-xl font-extrabold text-slate-900">$${project.price.toLocaleString()}</span>
+                        <span class="text-xl font-extrabold text-slate-900">KSh ${project.price.toLocaleString()}</span>
                     </div>
                     <button class="bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold px-4 py-2 rounded-lg transition shadow-sm">
                         View Blueprint
@@ -137,7 +135,6 @@ function displayProjects(projects) {
     `).join('');
 }
 
-// 4. Filtering Engine Logic
 function filterProjects() {
     const searchString = searchBar.value.toLowerCase().trim();
     const selectedPriceBracket = priceFilter.value;
@@ -147,12 +144,13 @@ function filterProjects() {
                               project.style.toLowerCase().includes(searchString);
 
         let matchesPrice = true;
-        if (selectedPriceBracket === "under-400") {
-            matchesPrice = project.price < 400000;
-        } else if (selectedPriceBracket === "400-600") {
-            matchesPrice = project.price >= 400000 && project.price <= 600000;
-        } else if (selectedPriceBracket === "above-600") {
-            matchesPrice = project.price > 600000;
+        // Adjusted filters for converted KSh valuations
+        if (selectedPriceBracket === "under-50m") {
+            matchesPrice = project.price < 50000000;
+        } else if (selectedPriceBracket === "50m-80m") {
+            matchesPrice = project.price >= 50000000 && project.price <= 80000000;
+        } else if (selectedPriceBracket === "above-80m") {
+            matchesPrice = project.price > 80000000;
         }
 
         return matchesSearch && matchesPrice;
@@ -161,14 +159,12 @@ function filterProjects() {
     displayProjects(filtered);
 }
 
-// 5. Reactive Event Listeners
 searchBar.addEventListener('input', filterProjects);
 priceFilter.addEventListener('change', filterProjects);
 
 displayProjects(projectData);
 
 // ==================== SLIDESHOW FUNCTIONALITY ====================
-
 let currentSlideIndex = 0;
 const slideshowContainer = document.getElementById('slideshowContainer');
 const slideIndicators = document.getElementById('slideIndicators');
@@ -176,10 +172,8 @@ const prevButton = document.getElementById('prevSlide');
 const nextButton = document.getElementById('nextSlide');
 
 function initSlideshow() {
-    // FIX: Automatically sort building items alphabetically by their title layout
     materialsSlides.sort((a, b) => a.title.localeCompare(b.title));
 
-    // Create slide indicators (dots) based on sorted array
     materialsSlides.forEach((_, index) => {
         const dot = document.createElement('button');
         dot.className = `w-3 h-3 rounded-full transition ${index === 0 ? 'bg-amber-500' : 'bg-white/50'}`;
@@ -187,7 +181,6 @@ function initSlideshow() {
         slideIndicators.appendChild(dot);
     });
 
-    // Create slides based on sorted array
     materialsSlides.forEach((slide, index) => {
         const slideDiv = document.createElement('div');
         slideDiv.className = `absolute w-full h-full transition-opacity duration-1000 ${index === 0 ? 'opacity-100' : 'opacity-0'}`;
